@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "k1core"
+version = "0.1.0"
+description = ""
+authors = ["Dmytro Podolynnyi"]
+readme = "README.md"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django = "^5.0.4"
+fastapi = "^0.115.8"
+pydantic = "^1.9.1"
+celery = "^5.4.0"
+flower = "^2.0.1"
+redis = "^5.2.1"
+requests = "^2.32.3"
+django-environ = "^0.8.1"
+psycopg2 = "^2.9.10"
