@@ -7,7 +7,7 @@ from providers.models import Provider
 class Block(BaseModelMixin):
     currency = models.ForeignKey(Currency, on_delete=models.PROTECT, related_name="blocks")
     provider = models.ForeignKey(Provider, on_delete=models.PROTECT, related_name="blocks")
-    number = models.PositiveIntegerField()
+    number = models.PositiveIntegerField(unique=True)
     blockchain_created_at = models.DateTimeField(null=True, default=None)
 
     class Meta:
