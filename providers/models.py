@@ -1,10 +1,11 @@
 from django.db import models
 
 from common.models import BaseModelMixin
+from providers.constants import ProviderConstants
 
 
 class Provider(BaseModelMixin):
-    name = models.CharField(max_length=255, unique=True)
+    name = models.CharField(max_length=ProviderConstants.NAME_MAX_LENGTH, unique=True)
 
     class Meta:
         verbose_name = "Provider"

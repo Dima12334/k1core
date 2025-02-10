@@ -1,6 +1,8 @@
 from django.db import models
 import uuid
 
+from common.constants import CurrencyConstants
+
 
 class BaseModelMixin(models.Model):
     class Meta:
@@ -12,7 +14,7 @@ class BaseModelMixin(models.Model):
 
 
 class Currency(BaseModelMixin):
-    name = models.CharField(max_length=255, unique=True)
+    name = models.CharField(max_length=CurrencyConstants.NAME_MAX_LENGTH, unique=True)
 
     class Meta:
         verbose_name = "Currency"
