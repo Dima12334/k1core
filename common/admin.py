@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from common.models import Currency
+
+
+@admin.register(Currency)
+class CurrencyAdmin(admin.ModelAdmin):
+    list_display = ("name",)

@@ -5,7 +5,6 @@ from common.models import BaseModelMixin
 
 class User(AbstractUser, BaseModelMixin):
     email = models.EmailField(unique=True)
-    is_active = models.BooleanField(default=True)
 
     class Meta:
         verbose_name = "User"

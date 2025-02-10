@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from providers.models import Provider
+
+
+@admin.register(Provider)
+class ProviderAdmin(admin.ModelAdmin):
+    list_display = ("name",)
