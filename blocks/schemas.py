@@ -11,7 +11,7 @@ class ReadBlockSchema(BaseModel):
     currency: ReadCurrencySchema
     provider: ReadProviderSchema
     number: int
-    blockchain_created_at: Optional[datetime]
+    best_block_time: Optional[datetime]
 
     class Config:
         arbitrary_types_allowed = True
@@ -21,4 +21,4 @@ class CreateBlockSchema(BaseModel):
     currency_id: UUID
     provider_id: UUID
     number: int = Field(gt=0)
-    blockchain_created_at: Optional[datetime]
+    best_block_time: Optional[datetime]

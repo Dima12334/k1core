@@ -9,8 +9,9 @@ class BlockAdmin(admin.ModelAdmin):
         "currency",
         "provider",
         "number",
+        "best_block_time"
     )
-    readonly_fields = list_display + ("blockchain_created_at",)
+    readonly_fields = list_display
 
     def get_queryset(self, request):
         return super().get_queryset(request).select_related("currency", "provider")
