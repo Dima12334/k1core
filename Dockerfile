@@ -11,10 +11,10 @@ WORKDIR /k1core
 
 COPY ./poetry.lock /k1core/poetry.lock
 COPY ./pyproject.toml /k1core/pyproject.toml
-RUN poetry settings virtualenvs.create false && poetry install --no-interaction --no-ansi
+RUN poetry config virtualenvs.create false && poetry install --no-interaction --no-ansi
 
 COPY . /k1core
 
 EXPOSE 8000
 
-CMD ["sh", "-c", "python manage.py runserver 0.0.0.0:8000"]
+CMD ["sh", "-c", "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]

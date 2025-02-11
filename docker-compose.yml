@@ -39,7 +39,7 @@ services:
     environment:
       - CELERY_BROKER_URL=${CELERY_BROKER_URL}
       - CELERY_RESULT_BACKEND=${CELERY_RESULT_BACKEND}
-    command: celery -A settings worker --loglevel=info
+    command: celery -A config.celery worker --loglevel=error
 
   celery-beat:
     build: .
@@ -52,7 +52,7 @@ services:
     environment:
       - CELERY_BROKER_URL=${CELERY_BROKER_URL}
       - CELERY_RESULT_BACKEND=${CELERY_RESULT_BACKEND}
-    command: celery -A settings beat --loglevel=info
+    command: celery -A config.celery beat --loglevel=error
 
   flower:
     image: mher/flower
@@ -65,7 +65,7 @@ services:
       - celery-worker
     environment:
       - CELERY_BROKER_URL=${CELERY_BROKER_URL}
-    command: flower --broker=${CELERY_BROKER_URL} --port=${FLOWER_PORT}
+      - FLOWER_PORT=${FLOWER_PORT}
 
 volumes:
   postgres_db:

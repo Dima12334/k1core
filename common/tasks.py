@@ -17,7 +17,7 @@ def _get_latest_blocks_data(provider: Provider, currency_name: str):
 
     currency = Currency.objects.filter(name__iexact=currency_name).first()
     if not currency:
-        logger.error(f"{currency} currency does not exists")
+        logger.error(f"{currency_name} currency does not exists")
         return
 
     currency_data = client.get_blockchain_stats(chain=currency_name.lower())
