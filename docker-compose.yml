@@ -5,13 +5,17 @@ services:
     build: .
     container_name: k1core_app
     ports:
-      - ${APP_PORT}:${APP_PORT}
+      - ${FASTAPI_APP_PORT}:${FASTAPI_APP_PORT}
+      - ${DJANGO_APP_PORT}:${DJANGO_APP_PORT}
     depends_on:
       - db
       - redis
     environment:
       - CELERY_BROKER_URL=${CELERY_BROKER_URL}
       - CELERY_RESULT_BACKEND=${CELERY_RESULT_BACKEND}
+    command: ./scripts/runlocalserver.sh
+    volumes:
+      - .:/k1core
 
   db:
     image: postgres:14
