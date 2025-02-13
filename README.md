@@ -26,27 +26,23 @@ https://github.com/Dima12334/k1core.git
 ```
 docker-compose build
 ```
-3. Load db dump (optional):
+3. Load db dump with sample data:
 ```
 docker-compose up db && docker-compose exec -T db psql -U postgres -d k1core < dump_db.sql
 ```
-4. If you didn't load dumb, you need to apply django migrations by this command:
-```
-docker-compose up db redis app && docker-compose exec app python manage.py migrate
-```
-5. Up other docker containers:
+4. Up other docker containers:
 ```
 docker-compose up
 ```
-6. Setup Static Files
+5. Setup Static Files
 ```
 docker-compose exec app python manage.py collectstatic --noinput && docker-compose restart app
 ```
-7. Create user
+6. Create user
 ```
 docker-compose exec app python manage.py createsuperuser
 ```
 or if you loaded db dump, you can use existing user:
 * **username**: ```admin```
 * **password**: ```qwerty```
-8. Done. Use the App.
+7. Done. Use the App.
