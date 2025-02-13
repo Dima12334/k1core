@@ -3,7 +3,10 @@ from logging import getLogger
 from fastapi import Request
 from fastapi.security import OAuth2PasswordRequestForm
 
-from common.exceptions import InvalidCredentialsException, InvalidUsernameOrPasswordException
+from common.exceptions import (
+    InvalidCredentialsException,
+    InvalidUsernameOrPasswordException,
+)
 from users.jwt import create_access_token_response
 from users.models import User
 from users.password import verify_password

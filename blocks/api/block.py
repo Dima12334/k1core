@@ -15,9 +15,11 @@ class BlockAPI:
         currency_name: Optional[str],
         provider_name: Optional[str],
         page: int,
-        limit: int
+        limit: int,
     ) -> List[Block]:
-        blocks = Block.objects.select_related("currency", "provider").order_by("currency__name")
+        blocks = Block.objects.select_related("currency", "provider").order_by(
+            "currency__name"
+        )
 
         # Apply filters
         if currency_name:
@@ -34,7 +36,9 @@ class BlockAPI:
     @classmethod
     async def retrieve_by_id(cls, block_id: UUID) -> Block:
         try:
-            block = await sync_to_async(Block.objects.select_related("currency", "provider").get)(
+            block = await sync_to_async(
+                Block.objects.select_related("currency", "provider").get
+            )(
                 id=block_id,
             )
             return block
@@ -48,11 +52,9 @@ class BlockAPI:
         number: int,
     ) -> Block:
         try:
-            block = await sync_to_async(Block.objects.select_related("currency", "provider").get)(
-                currency_id=currency_id,
-                number=number
-            )
+            block = await sync_to_async(
+                Block.objects.select_related("currency", "provider").get
+            )(currency_id=currency_id, number=number)
             return block
         except Block.DoesNotExist:
             raise HTTPException(status_code=404, detail="Block not found")
-

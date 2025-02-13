@@ -19,6 +19,8 @@ def create_access_token_response(
         expire = datetime.utcnow() + timedelta(seconds=settings.JWT_EXPIRATION_MINUTES)
     data.update({"exp": expire})
     return Token(
-        access_token=jwt.encode(data, settings.SECRET_KEY, algorithm=settings.JWT_ALGORITHM),
+        access_token=jwt.encode(
+            data, settings.SECRET_KEY, algorithm=settings.JWT_ALGORITHM
+        ),
         token_type="bearer",
     )

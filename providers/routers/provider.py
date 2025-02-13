@@ -12,5 +12,7 @@ provider_router = APIRouter()
 
 
 @provider_router.get("/", response_model=List[ReadProviderSchema])
-async def get(request: Request, current_user: User = Depends(get_current_user)) -> List[Provider]:
+async def get(
+    request: Request, current_user: User = Depends(get_current_user)
+) -> List[Provider]:
     return await ProviderAPI.get()

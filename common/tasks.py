@@ -24,15 +24,15 @@ def _get_latest_blocks_data(provider: Provider, currency_name: str):
 
     if currency_data:
         best_block_time = datetime.strptime(
-            currency_data['data']['best_block_time'], "%Y-%m-%d %H:%M:%S"
+            currency_data["data"]["best_block_time"], "%Y-%m-%d %H:%M:%S"
         )
         Block.objects.get_or_create(
-            number=currency_data['data']['blocks'],
+            number=currency_data["data"]["blocks"],
             currency=currency,
             defaults={
-                'provider': provider,
-                'best_block_time': best_block_time,
-            }
+                "provider": provider,
+                "best_block_time": best_block_time,
+            },
         )
     else:
         logger.error(f"{currency_name} data is empty")
@@ -41,10 +41,10 @@ def _get_latest_blocks_data(provider: Provider, currency_name: str):
 
 @shared_task()
 def get_latest_blocks_data():
-    provider = Provider.objects.filter(name='BlockChair').first()
+    provider = Provider.objects.filter(name="BlockChair").first()
     if not provider:
         logger.error("BlockChair provider does not exists")
         return
 
-    _get_latest_blocks_data(provider=provider, currency_name='Bitcoin')
-    _get_latest_blocks_data(provider=provider, currency_name='Ethereum')
+    _get_latest_blocks_data(provider=provider, currency_name="Bitcoin")
+    _get_latest_blocks_data(provider=provider, currency_name="Ethereum")

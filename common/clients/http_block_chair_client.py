@@ -9,7 +9,9 @@ logger = logging.getLogger(__name__)
 
 class BlockChairClient:
     BLOCK_CHAIR_API_URL = "https://api.blockchair.com/"
-    BLOCK_CHAIR_API_GET_STATS_URL = BLOCK_CHAIR_API_URL + "{chain}/stats"  # chain: ethereum, bitcoin, etc.
+    BLOCK_CHAIR_API_GET_STATS_URL = (
+        BLOCK_CHAIR_API_URL + "{chain}/stats"
+    )  # chain: ethereum, bitcoin, etc.
 
     def get_blockchain_stats(self, chain: str) -> Dict[str, Any]:
         headers = {"Content-Type": "application/json;charset=utf-8"}

@@ -23,10 +23,7 @@ async def get(
     limit: int = Query(20, ge=1, le=100, description="Number of items per page"),
 ) -> List[Block]:
     return await BlockAPI.get(
-        currency_name=currency_name,
-        provider_name=provider_name,
-        page=page,
-        limit=limit
+        currency_name=currency_name, provider_name=provider_name, page=page, limit=limit
     )
 
 
