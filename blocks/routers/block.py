@@ -38,10 +38,12 @@ async def retrieve_by_id(
 
 
 @block_router.get("/{currency_id}/{number}", response_model=ReadBlockSchema)
-async def retrieve_by_currency_and_number(
+async def retrieve_by_currency_id_and_number(
     request: Request,
     currency_id: UUID,
     number: int,
     current_user: User = Depends(get_current_user),
 ) -> Block:
-    return await BlockAPI.retrieve_by_currency_and_number(currency_id=currency_id, number=number)
+    return await BlockAPI.retrieve_by_currency_id_and_number(
+        currency_id=currency_id, number=number
+    )

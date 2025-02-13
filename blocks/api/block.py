@@ -5,9 +5,7 @@ from asgiref.sync import sync_to_async
 from django.core.paginator import Paginator
 
 from blocks.models import Block
-from fastapi import Request, HTTPException
-
-from users.models import User
+from fastapi import HTTPException
 
 
 class BlockAPI:
@@ -44,7 +42,7 @@ class BlockAPI:
             raise HTTPException(status_code=404, detail="Block not found")
 
     @classmethod
-    async def retrieve_by_currency_and_number(
+    async def retrieve_by_currency_id_and_number(
         cls,
         currency_id: UUID,
         number: int,
