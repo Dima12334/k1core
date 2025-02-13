@@ -22,27 +22,31 @@ Django admin panel: http://127.0.0.1:8000/django/admin/
 ```
 https://github.com/Dima12334/k1core.git
 ```
-2. Build and up docker containers:
+2. Build docker:
 ```
-docker-compose up --build
+docker-compose build
 ```
 3. Load db dump (optional):
 ```
-docker-compose exec -T db psql -U postgres -d k1core < dump_db.sql
+docker-compose up db redis app && docker-compose exec -T db psql -U postgres -d k1core < dump_db.sql
 ```
 4. If you didn't load dumb, you need to apply django migrations by this command:
 ```
-docker-compose exec app python manage.py migrate
+docker-compose up db redis app && docker-compose exec app python manage.py migrate
 ```
-5. Setup Static Files
+5. Up other docker containers:
+```
+docker-compose up
+```
+6. Setup Static Files
 ```
 docker-compose exec app python manage.py collectstatic --noinput
 ```
-6. Create user
+7. Create user
 ```
 docker-compose exec app python manage.py createsuperuser
 ```
 or if you loaded db dump, you can use existing user:
 * **username**: ```admin```
 * **password**: ```qwerty```
-7. Done. Use the App.
+8. Done. Use the App.
