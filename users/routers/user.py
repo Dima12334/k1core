@@ -10,9 +10,9 @@ user_router = APIRouter()
 
 @user_router.get("/", response_model=ReadUserSchema)
 async def get(request: Request, current_user: User = Depends(get_current_user)) -> User:
-    return UserAPI.get(request, current_user)
+    return UserAPI.get(current_user=current_user)
 
 
 @user_router.post("/", response_model=ReadUserSchema)
 async def create(request: Request, schema: CreateUserSchema) -> User:
-    return await UserAPI.create(request, schema)
+    return await UserAPI.create(schema=schema)

@@ -7,6 +7,5 @@ class ReadProviderSchema(BaseModel):
     id: UUID
     name: str
 
-
-class CreateProviderSchema(BaseModel):
-    name: str = Field(max_length=ProviderConstants.NAME_MAX_LENGTH)
+    class Config:
+        orm_mode = True
