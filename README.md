@@ -28,7 +28,7 @@ docker-compose build
 ```
 3. Load db dump (optional):
 ```
-docker-compose up db redis app && docker-compose exec -T db psql -U postgres -d k1core < dump_db.sql
+docker-compose up db && docker-compose exec -T db psql -U postgres -d k1core < dump_db.sql
 ```
 4. If you didn't load dumb, you need to apply django migrations by this command:
 ```
@@ -40,7 +40,7 @@ docker-compose up
 ```
 6. Setup Static Files
 ```
-docker-compose exec app python manage.py collectstatic --noinput
+docker-compose exec app python manage.py collectstatic --noinput && docker-compose restart app
 ```
 7. Create user
 ```
